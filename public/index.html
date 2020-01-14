@@ -4,16 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Vue</title>
+  <title>Currency App</title>
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <link rel="stylesheet" href="./css/styles.css">
   <script src="./js/bundle.js"></script>
 </head>
 <body>
+
+  <h1>Welcome to the currency converter app!</h1>
+
   <div id="app">
-    <label for="enter_amount">Please enter an amount in Euros:</label>
-      <input type="number" id="enter_amount" value="">
-      <button type="button" name="button">Convert!</button>
+
+    <label for="enter_amount">Enter amount in Euros:</label>
+      <input type="number" id="enter_amount" v-model.number="amountInEuros">
+
+    <label for="enter_currency">Select currency:</label>
+      <select id="enter_currency" v-model="selectedRate">
+        <option disabled value="">Select currency</option>
+        <option v-for="(value, name) in exchangeRates" :value="value">{{ name }}</option>
+      </select>
+
+    <button type="button" name="button">Convert!</button>
+
+    <div>
+
+      <h2>Conversion details...</h2>
+      <p>Original amount: €{{ amountInEuros }}</p>
+      <p>Converted amount: {{ conversionResult }}</p>
+    </div>
 
   </div>
 </body>

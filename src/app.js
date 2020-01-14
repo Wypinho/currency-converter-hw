@@ -5,7 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     el: "#app",
     data: {
       exchangeRates: {},
-      amountInEuros: null
+      amountInEuros: null,
+      selectedRate: {},
+      // conversionRate: null,
+      conversionResult: null
     },
     mounted() {
       this.getRates()
@@ -14,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
       getRates: function() {
         fetch('https://api.exchangeratesapi.io/latest')
           .then(response => response.json())
-          .then(dataObject => this.exchangeRates = dataObject)
+          .then(dataObject => this.exchangeRates = dataObject.rates)
       }
     }
   });
