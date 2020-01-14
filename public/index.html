@@ -24,7 +24,7 @@
         <option v-for="(value, name) in exchangeRates" :value="value">{{ name }}</option>
       </select>
 
-    <button type="button" name="button">Convert!</button>
+    <button type="button" name="button" v-on:click="convert()">Convert!</button>
 
     <div>
 
