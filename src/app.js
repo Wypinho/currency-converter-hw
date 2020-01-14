@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     el: "#app",
     data: {
       exchangeRates: {},
-      amountInEuros: null,
+      initialAmount: null,
       selectedRate: {},
       // conversionRate: null,
       conversionResult: null
@@ -19,8 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
           .then(response => response.json())
           .then(dataObject => this.exchangeRates = dataObject.rates)
       },
-      convert: function() {
-        this.conversionResult = this.amountInEuros * this.selectedRate
+      convertFromEuros: function() {
+        this.conversionResult = this.initialAmount * this.selectedRate
+        this.conversionResult = this.conversionResult.toFixed(2)
+      },
+      convertToEuros: function() {
+        this.conversionResult = this.initialAmount / this.selectedRate
         this.conversionResult = this.conversionResult.toFixed(2)
       }
     }

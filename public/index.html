@@ -15,8 +15,7 @@
 
   <div id="app">
 
-    <label for="enter_amount">Enter amount in Euros:</label>
-      <input type="number" id="enter_amount" v-model.number="amountInEuros">
+    <h2>Convert <i>from</i> Euros...</h2>
 
     <label for="enter_currency">Select currency:</label>
       <select id="enter_currency" v-model="selectedRate">
@@ -24,12 +23,28 @@
         <option v-for="(value, name) in exchangeRates" :value="value">{{ name }}</option>
       </select>
 
-    <button type="button" name="button" v-on:click="convert()">Convert!</button>
+    <label for="enter_amount">Enter amount:</label>
+      <input type="number" id="enter_amount" v-model.number="initialAmount">
 
-    <div>
+    <button type="button" name="button" v-on:click="convertFromEuros()">Convert!</button>
+
+    <h2>Convert <i>to</i> Euros...</h2>
+
+    <label for="enter_currency">Select currency:</label>
+      <select id="enter_currency" v-model="selectedRate">
+        <option disabled value="">Select currency</option>
+        <option v-for="(value, name) in exchangeRates" :value="value">{{ name }}</option>
+      </select>
+
+    <label for="enter_amount">Enter amount:</label>
+      <input type="number" id="enter_amount" v-model.number="initialAmount">
+
+    <button type="button" name="button" v-on:click="convertToEuros()">Convert!</button>
+
+    <div id="conversion_details" v-if="conversionResult">
 
       <h2>Conversion details...</h2>
-      <p>Original amount: €{{ amountInEuros }}</p>
+      <p>Original amount: {{ initialAmount }}</p>
       <p>Converted amount: {{ conversionResult }}</p>
     </div>
 
